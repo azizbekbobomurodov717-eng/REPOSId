@@ -1,0 +1,79 @@
+import telebot
+from telebot import types
+
+bot = telebot.TeleBot("8680500810:AAGPTbBzb09ub7fmd21gNmYBIiKn7gA07T8")
+
+@bot.message_handler(commands = ["start"])
+def start(message):
+    bot.reply_to(message, text="Assalomu Alaykum bu mening 1 chi telegramdagi kodim!")
+
+@bot.message_handler(commands = ["help"])
+def help(message):
+    bot.reply_to(message, text="""🛠 Yordam bo'limi
+Botdan foydalanishda qiyinchilikka duch kelgan bo'lsangiz, quyidagi komandalardan foydalanishingiz mumkin:
+/help - 🛠 Yordam bo'limi
+Botdan foydalanishda qiyinchilikka duch kelgan bo'lsangiz, quyidagi komandalardan foydalanishingiz mumkin:
+/info – ℹ️ Ma'lumot
+
+Ushbu bot Yandex Games platformasi uchun maxsus ishlab chiqilgan bo'lib, foydalanuvchilarga qulay va tezkor xizmat ko'rsatishga yordam beradi.
+/about – 🤖 Bot haqida
+
+Yandex Games bot – bu sizning ishingizni yengillashtirish va kerakli o'yinlarni tezkor topish uchun yaratilgan avtomatlashtirilgan yordamchi.
+/username – https://t.me/yandex_igri_48_sensorika_bot
+/nickname – Yandex Games
+/description – 📝 Tavfisl
+
+Ushbu bot Yandex Games platformasining rasmiy boti bo'lib, foydalanuvchilar bilan muloqot qilish, so'rovlarni qabul qilish va zaruriy o'yinlarni taqdim etish uchun xizmat qiladi.
+/game – Yandex Games'da o'ynash
+
+Qoshimcha savollar bolsa, adminga murojaat qiling: @azizbek_bobomurodov""")
+
+@bot.message_handler(commands = ["info"])
+def info(message):
+    bot.reply_to(message, text="""ℹ️ Ma'lumot
+
+Ushbu bot Yandex Games platformasi uchun maxsus ishlab chiqilgan bo'lib, foydalanuvchilarga qulay va tezkor xizmat ko'rsatishga yordam beradi.""")
+
+@bot.message_handler(commands = ["about"])
+def about(message):
+    bot.reply_to(message, text="""🤖 Bot haqida
+
+Yandex Games bot – bu sizning ishingizni yengillashtirish va kerakli o'yinlarni tezkor topish uchun yaratilgan avtomatlashtirilgan yordamchi.""")
+
+@bot.message_handler(commands = ["username"])
+def username(message):
+    bot.reply_to(message, text="""🔗 Bot manzili (username):
+https://t.me/yandex_games_bot""")
+
+@bot.message_handler(commands = ["nickname"])
+def nickname(message):
+    bot.reply_to(message, text="""🏷 Bot nomi:
+Yandex Games bot""")
+
+@bot.message_handler(commands = ["description"])
+def description(message):
+    bot.reply_to(message, text="""📝 Tavfisl
+
+Ushbu bot Yandex Games platformasining rasmiy boti bo'lib, foydalanuvchilar bilan muloqot qilish, so'rovlarni qabul qilish va zaruriy o'yinlarni taqdim etish uchun xizmat qiladi.""")
+
+@bot.message_handler(commands=['uyin', 'game'])
+def send_game(message):
+    markup = types.InlineKeyboardMarkup()
+    web_app = types.WebAppInfo(url="https://yandex.uz/games/home")
+    button = types.InlineKeyboardButton(text="🎮 O'yinni o'ynash", web_app=web_app)
+    markup.add(button)
+    
+    bot.send_message(
+        message.chat.id,
+        "Marhamat, tugmani bosing va o'yinni boshlang!",
+        reply_markup=markup)
+
+print("Bot ishga tushdi...")
+bot.infinity_polling()
+
+
+
+
+
+
+D
